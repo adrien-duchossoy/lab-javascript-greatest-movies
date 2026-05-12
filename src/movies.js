@@ -52,7 +52,7 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-    durationSplit = [...moviesArray].map((movie) => {
+    const durationSplit = [...moviesArray].map((movie) => {
         const split = movie.duration.split("h")
         const hours = parseInt(split[0])
         const minute = parseInt(split[1] || 0)
