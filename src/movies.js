@@ -63,4 +63,17 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if(!moviesArray.length) {
+        return null
+    }
+    const moviesByYear = Object.groupBy(moviesArray, (movie) => movie.year)
+    const moviesEntries = Object.entries(moviesByYear)
+        .map(([year, films]) => {return { year, score: scoresAverage(films)}})
+        .sort((a, b) => a.year - b.year)
+    //([movie, films]) => scoresAverage(films) ici, on fait de la destructuration, on dit juste prend le premier element de l'array, appelle le movie, le deuxième appelle le films
+    const bestScore = Math.max(...moviesEntries.map(scoreObj => scoreObj.score))
+    const bestYear = moviesEntries.find(({score}) => score === bestScore)
+    return `The best year was ${bestYear.year} with an average score of ${bestYear.score}`
+
+}
