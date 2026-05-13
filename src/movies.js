@@ -77,3 +77,32 @@ function bestYearAvg(moviesArray) {
     return `The best year was ${bestYear.year} with an average score of ${bestYear.score}`
 
 }
+
+
+//Self guided : Asked AI to create 2 new exercises
+
+//Iteration 9: Return the name of the director that made most movies. If there's a tie, return the first in alphabetical order, return null if the array is empty
+
+function mostProductiveDirector (moviesArray) {
+    if (!moviesArray.length) {
+        return null
+    }
+    const moviesByDirector = Object.entries(Object.groupBy(moviesArray, (movie) => movie.director))
+    const moviesCount = moviesByDirector.map(([director, movies]) => {return {director, movies: movies.length}})
+    moviesCount.sort((a, b) => {return (b.movies - a.movies) === 0 ? a.director.localeCompare(b.director) : (b.movies - a.movies)})
+    return `The director that directed the most movies is ${moviesCount[0].director} with ${moviesCount[0].movies} movies.`
+}
+
+//Iteration 10: return an object where each key is the genre, and the value is the longest movie of this genre (in minutes). If two movies hav the same length, take the first from the array.
+
+/*
+function longestMovieByGenre (moviesArray) {
+        if (!moviesArray.length) {
+        return null
+    }
+    const moviesAllGenre = moviesArray.flatMap((movie) => movie.genre.map((genre) => {return { ...movie, currentGenre: genre }}))
+    const moviesAllGenreGrouped = Object.entries(Object.groupBy(moviesAllGenre, (movie) => movie.currentGenre))
+    //moviesAllGenreGrouped.map((movie) => {})
+    return moviesAllGenreGrouped
+}
+*/
